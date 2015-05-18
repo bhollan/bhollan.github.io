@@ -1,22 +1,319 @@
-<!DOCTYPE hmtl>
+<style>* {margin: 0; padding: 0;}
 
+body{
+ 	background: url('http://thumbs.dreamstime.com/x/steel-diamond-plate-background-903381.jpg') repeat;
+}
+
+.container {
+	padding: 100px;
+	text-align: center;
+	background-color:grey;
+}
+
+.timer {
+	padding: 10px;
+	background: linear-gradient(top, #222, #444);
+	overflow: hidden;
+	display: inline-block;
+	border: 7px solid #efefef;
+	border-radius: 5px;
+	position: relative;
+	
+	box-shadow: 
+		inset 0 -2px 10px 1px rgba(0, 0, 0, 0.75), 
+		0 5px 20px -10px rgba(0, 0, 0, 1);
+}
+
+.cell {
+	/*Should only display 1 digit. Hence height = line height of .numbers
+	and width = width of .numbers*/
+	width: 0.60em;
+	height: 40px;
+	font-size: 50px;
+	overflow: hidden;
+	position: relative;
+	float: left;
+}
+
+.numbers {
+	width: 0.6em;
+	line-height: 40px;
+	font-family: digital, arial, verdana;
+	text-align: center;
+	color: #fff;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	/*Glow to the text*/
+	text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+}
+
+/*Styles for the controls*/
+#timer_controls {
+	margin-top: 5px;
+}
+#timer_controls label {
+ 	user-select:none;   /*<-- This property is not 100% cross-browser*/
+	cursor: pointer;
+	padding: 5px 10px;
+	background: #efefef;
+	font-family: arial, verdana, tahoma;
+	font-size: 11px;
+	border-radius: 0 0 3px 3px;
+}
+input[name="controls"] {display: none;}
+
+/*Control code*/
+#stop:checked~.timer .numbers {animation-play-state: paused;}
+#split:checked~.timer .numbers {animation-play-state: running;}
+#start:checked~.timer .numbers {animation-play-state: running;}
+#reset:checked~.timer .numbers {animation: none;}
+
+.moveten {
+	animation: moveten 1s steps(10, end) infinite;
+	/*By default animation should be paused*/
+	animation-play-state: paused;
+}
+.movesix {
+	animation: movesix 1s steps(6, end) infinite;
+	animation-play-state: paused;
+}
+
+/*Sync the animation speed with time speed*/
+/*One second per digit. 10 digits. Hence 10s*/
+.second {animation-duration: 10s;}
+.tensecond {animation-duration: 60s;} /*60 times .second*/
+
+.milisecond {animation-duration: 1s;} /*1/10th of .second*/
+.tenmilisecond {animation-duration: 0.1s;}
+.hundredmilisecond {animation-duration: 0.01s;}
+
+.minute {animation-duration: 600s;} /*60 times .second*/
+.tenminute {animation-duration: 3600s;} /*60 times .minute*/
+
+.hour {animation-duration: 36000s;} /*60 times .minute*/
+.tenhour {animation-duration: 360000s;} /*10 times .hour*/
+
+/*We are using prefixfree, so no need of vendor prefixes*/
+/*The logic of the animation is to alter the 'top' value of the absolutely
+positioned .numbers*/
+/*Minutes and Seconds should be limited to only '60' and not '100'
+Hence we need to create 2 animations. One with 10 steps and 10 digits and
+the other one with 6 steps and 6 digits*/
+@keyframes moveten {
+	0% {top: 0;}
+	100% {top: -400px;} 
+	/*height = 40. digits = 10. hence -400 to move it completely to the top*/
+}
+
+@keyframes movesix {
+	0% {top: 0;}
+	100% {top: -240px;} 
+	/*height = 40. digits = 6. hence -240 to move it completely to the top*/
+}
+
+/*Lets use a better font for the numbers*/
+/* @font-face { */
+/* 	font-family: 'digital'; */
+/* 	src: url('http://thecodeplayer.com/uploads/fonts/DS-DIGI.TTF'); */
+	
+/* } */
+</style>
 <head>
-<h2>Randy's Timer</h2>
-
-<title>A priest, a minister, and a rabbi...</title>
-<script type="text/javascript" src="StatWatch.js"></script>
-
-
+<script src="d3/d3.min.js" type="text/javascript"></script>
+<script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script>
+<script type="text/javascript" src="src/Ziggy.js"></script>
+<script type="text/javascript" src="src/StopWatch.js"></script>
 </head>
 
+
+<!-- LOAD THE JAVASCRIPT BRAINS OF THE CSS/HTML STOPWATCH -->
+<body onload="createStopwatch();">
+<script>
+createStopwatch = function () {
+stopwatch = new StopWatch();
+};
+// THIS IS ALL THAT MUST RUN FOR THE STOPWATCH BRAINS TO WORK
+</script>
+
+
+
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.bar rect {
+  fill: steelblue;
+  shape-rendering: crispEdges;
+}
+
+.bar text {
+  fill: #fff;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+svg {
+  display:block;
+  margin:auto;
+}
+
+</style>
 <body>
+<script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
+<script>
 
-	<p>Maybe one day Randy's app idea will be here fully.<p>
+
+var margin = {top: 10, right: 30, bottom: 30, left: 30},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+    
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function redraw(input) {
 	
-	<input type="button" value="test" onclick="testStatWatch"/>
-	<input type="button" value="time" onclick="doSomethingOther()"/>
+		//it doesnt make any sense to make a histogram of 2 points 
+		if (input.length < 3) {
+			return;
+		};
+		//the histogram layout plots the '0' of the first point of the array, so slice it off 
+		if (input[0] === 0) {
+			input = input.slice(1, input.length);
+		}; 
+		console.log(input);
+		// Formatters for counts and times (converting numbers to Dates). 
+		var formatCount = d3.format(",.0f"), formatTime = d3.time
+				.format("%M:%S"), formatMinutes = function(d) {
+			return formatTime(new Date(2012, 0, 1, 0, d));
+		};
 
+		var margin = {top : 10,	right : 30,	bottom : 30, left : 30},
+			width = 960 - margin.left - margin.right,
+			height = 500 - margin.top - margin.bottom;
+
+		var numberOfBins = 20
+		
+		var data = d3.layout.histogram()
+				.bins(numberOfBins)(input);
+
+		console.log(data);
+		
+		var x = d3.scale.linear()
+				.domain([ d3.min(data, function(d) {return d.x}), d3.max(data, function(d) { return d.x})])
+				.range([ 0, width ]);
+
+		var y = d3.scale.linear()
+				.domain([ 0, d3.max(data, function(d) {	return d.y;	}) ])
+				.range([ height, 0 ]);
+		
+		var barWidth = 25  
+		
+		var bar = svg.selectAll("g").
+				data(data);
+						
+		bar.exit().remove();
+		
+		var gMan = bar.enter().append("g")
+				.attr("class", "bars")
+				.attr("transform", function(d,i) {return "translate(" + i*barWidth + "," + y(d.y) + ")";	});
+		
+		gMan.append("rect")
+				.attr("class","rects")
+				.attr("x",0)
+				.attr("y",0)
+				.attr("width",0)
+				.attr("height", 0);
+
+		var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(
+				formatMinutes);
+		
+		bar
+			.transition()
+			.duration(200)
+				.attr("transform", function (d) {return "translate(" + x(d.x) + "," + y(d.y) + ")"})
+				.attr("height", function(d) {return height - y(d.y);});
+		
+		bar = d3.selectAll(".rects").data(data)
+			.transition()
+			.duration(200)
+				.attr("width",barWidth)
+				.attr("height", function(d) {return height - y(d.y)});
+		
+// 		.attr("width",function (d) {return d.dx})
+		
+// 		bar.append("rect")
+// 			.attr("x", 1)
+// 			.attr("width", x(data[0].dx) - 1)			//THIS IS A PROBLEM!!!!!
+// 			.attr("height", function(d) {return height - y(d.y);});
+	};
+
+	function sampleGenerator() {
+		var values = d3.range(1000).map(d3.random.logNormal(Math.log(30), .4));
+		return values;
+	};
+
+	var values = sampleGenerator();
+	redraw(values);
+</script>
+
+</script>
 </body>
-
-
-</html>
+<title>Is there a paragraph anywhere in our future?</title>
+<div class="container">
+	<!-- stopwatch controls -->
+	<input id="start" name="controls" type="radio" onClick="stopwatch.start(); redraw(stopwatch.splits);" />
+	<input id="stop" name="controls" type="radio" onClick="stopwatch.stop();  redraw(stopwatch.splits);" />
+	<input id="reset" name="controls" type="radio" onClick="stopwatch.reset();  redraw(stopwatch.splits);" />
+	<div class="timer">
+		<div class="cell">
+			<div class="numbers tenhour moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell">
+			<div class="numbers hour moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+		<div class="cell">
+			<div class="numbers tenminute movesix">0 1 2 3 4 5 6</div>
+		</div>
+		<div class="cell">
+			<div class="numbers minute moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+		<div class="cell">
+			<div class="numbers tensecond movesix">0 1 2 3 4 5 6</div>
+		</div>
+		<div class="cell">
+			<div class="numbers second moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell divider"><div class="numbers">:</div></div>
+<!-- 		<div class="cell"> -->
+<!-- 			<div class="numbers milisecond moveten">0 1 2 3 4 5 6 7 8 9</div> -->
+<!-- 		</div> OPTED AGAINST USING MILLISECONDS DUE TO POSSIBLE INACCURACIES-->  
+		<div class="cell">
+			<div class="numbers tenmilisecond moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+		<div class="cell">
+			<div class="numbers hundredmilisecond moveten">0 1 2 3 4 5 6 7 8 9</div>
+		</div>
+	</div>
+	<!-- Labels for the controls -->
+	<div id="timer_controls">
+		<label for="start">Start / Split</label>
+		<!-- <label for="split">Split</label>-->
+		<label for="stop">Stop</label>
+		<label for="reset">Reset</label>
+	</div>
+</div>
