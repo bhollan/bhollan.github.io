@@ -1,7 +1,7 @@
 # bhollan.github.io
 Statistical tracking while you time.
 
-So here goes.  Thus begins my journey into having content online.  Who knows how far it will go.
+So here goes.  Thus begins my journey into having content online.  Who knows how far it will go. It may even be a good idea to take this down, or at least make it sound a little less "n00b"y.
 
 I'd like to build a single-page app for my friend Randy.
 He is a manufacturing engineer.  Time is very important to him.  How long does machine X take to make piece Y of widget X?
