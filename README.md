@@ -1,17 +1,23 @@
 # bhollan.github.io
 
-So this is the code to my portfolio.  Have a look around.
+So this is the text version of (my portfolio)[http://bhollan.github.io/].  Have a look around.
 
-I've been programming computers since I was 12.  I studied engineering in college and worked in hardware engineering just long enough to realize that I'd rather be in front of a computer (truth be told, I was sitting in front of a computer just as much as a software guy anyway).
+I've been programming computers since I was 12.  I studied engineering in college and worked in hardware enginee because I didn't want to sit in a cubicle farm.  As it turns out, they have the same cubicle farms for hardware guys too.  So now that the internet is a thing, and I can work from anywhere on the planet I want, the world is my cubicle farm.  Yay!
 
-So you can have a look around or not.
+So you can have a look aroun.  Or not.
 
-Such professional.  Very website.  Such sleek.
+Such professional.  Very website.  Much sleek. Do hire.
 
 ## Experience
 
 ## Skills
 
 ## Strengths
+
+## Desires
+
+## Passions
+
+## Products
 
 
