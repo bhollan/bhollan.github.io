@@ -8,9 +8,7 @@ So you can have a look aroun.  Or not.
 
 Such professional.  Very website.  Much sleek. Do hire.
 
-## Experience
-
-## Skills
+## Sills
 
 ## Strengths
 
@@ -18,6 +16,7 @@ Such professional.  Very website.  Much sleek. Do hire.
 
 ## Passions
 
-## Products
+## Experiences
 
+## Products
 

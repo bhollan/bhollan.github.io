@@ -1,6 +1,17 @@
-document {background-image: url(http://image.naldzgraphics.net/2012/12/10-ten-BlackDiamond.jpg) repeat;}
+body
 
-p {font-family:sans-serif;}
+{
+    font-family: sans-serif;
+}
 
-div {background-color:grey;
-	 border-radius:20%;}
+p 
+{
+    font-family: sans-serif;
+}
+
+div 
+{
+    background-color:grey;
+    border-radius:5px;
+}
+
