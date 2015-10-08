@@ -21,6 +21,32 @@ div
     border-radius:5px;
 }
 
+.container-jumbotron
+{
+    background-color: transparent;
+    position: relative;
+}
+
+.overlay
+{
+    background-color: #eee;
+    border: 1px solid black;
+    display:inline;
+    position: absolute;
+    font-weight: 10em;
+/*
+    right: 150px;
+    height: 150px;
+    width: 200px;
+    padding: 25px;
+*/
+}
+
+.banner
+{
+/*    position: relative;*/
+}
+
 .jumbotron
 {
     border-radius: 15px;
@@ -55,12 +81,13 @@ ul
 {
     background-color: transparent;
     margin: 0px;
+    padding: 30px;
 }
 
 .bubble
 {
     border-radius: 10px;
-    
+    padding: 20px;
 }
 
 a

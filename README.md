@@ -8,14 +8,41 @@ So you can have a look around.  Or not.
 
 Such professional.  Very website.  Much sleek. Do hire.
 
-## Sills
+## Skills
+    # Javascript
+        # Angular
+        # D3
+        # Node
+        # jQuery
+    # MEAN Stack
+    # HTML/CSS
+    # C/C++
+    # Matlab
+    # Python
 
 ## Strengths
+    # Leadership
+    # Problem Solving
+    # Initiative
 
 ## Desires
+    # Challenge
+    # Flexibility
+    # Fun
 
 ## Passions
+    # Learning
+    # Data Visualisation
+    # Puzzles
+    # Bitcoin
 
 ## Experiences
-
+    # Lockheed Martin
+    # Logos Hope
+    # Having 3 boys in 2 years
+    # Auburn
 ## Products
+    # RainbowBars
+    # SixSigmaStopwatch
+    # PacketPong
+    # StreetviewHaiku
