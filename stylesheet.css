@@ -41,9 +41,26 @@ h3.headline
     margin-top: 10px;
 }
 
+ul
+{
+    list-style-type: none;
+}
+
+.row
+{
+    background-color: transparent;
+}
+
+.container
+{
+    background-color: transparent;
+    margin: 0px;
+}
+
 .bubble
 {
     border-radius: 10px;
+    
 }
 
 a
@@ -55,4 +72,9 @@ a
 a:visited
 {
     color:#333;
+}
+
+.footer
+{
+    margin: 50px;
 }
