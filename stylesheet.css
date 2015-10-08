@@ -1,7 +1,13 @@
 body
-
 {
+    background-color: gray;
     font-family: sans-serif;
+    color:black;
+}
+
+*
+{
+    color:black;
 }
 
 p 
@@ -11,7 +17,42 @@ p
 
 div 
 {
-    background-color:grey;
+    background-color: #DDD;
     border-radius:5px;
 }
 
+.jumbotron
+{
+    border-radius: 15px;
+}
+
+.leader
+{
+    background-color: transparent;
+}
+
+.headline
+{
+    white-space: pre;
+}
+
+h3.headline
+{
+    margin-top: 10px;
+}
+
+.bubble
+{
+    border-radius: 10px;
+}
+
+a
+{
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:visited
+{
+    color:#333;
+}
